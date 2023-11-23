@@ -44,4 +44,8 @@
   - JavaScript functions for toggling features and updating styles.
   - Dynamic application of styles based on the toggle state.
 
+ - **References:**
+  - https://featureflagsbook.com/ 
+  - https://en.wikipedia.org/wiki/Feature_toggle
+
 ---

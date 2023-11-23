@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,61 +52,76 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Feature Toggles</h1>
     </header>
-
     <div class="container">
         <div class="feature-toggle">
             <label>
                 <input type="checkbox" id="darkModeToggle" onchange="toggleFeature('DarkMode')" checked> Dark Mode
             </label>
         </div>
-
-        <!-- Add other feature toggles as needed -->
-
+        <div class="premium-toggle">
+            <label>
+                <input type="checkbox" id="premiumToggle" onchange="toggleFeature('PremiumService')"> Premium Service
+            </label>
+            <span id="premiumStatus">( OFF )</span>
+        </div>
     </div>
-
+    <!-- Add other feature toggles as needed -->
+    </div>
     <footer>
         <!-- Your footer content -->
     </footer>
-
     <script>
-        // Function to toggle the dark mode feature in Local Storage
-        function toggleFeature(featureName) {
-            const currentToggleValue = localStorage.getItem('feature' + featureName);
-            const newToggleValue = currentToggleValue === 'true' ? 'false' : 'true';
+    // Function to toggle the dark mode feature in Local Storage
+    function toggleFeature(featureName) {
 
-            // Update the dark mode feature toggle in Local Storage
-            localStorage.setItem('feature' + featureName, newToggleValue);
+        const currentToggleValue = localStorage.getItem('feature' + featureName);
+        const newToggleValue = currentToggleValue === 'true' ? 'false' : 'true';
 
-            // Apply dark mode styles to the body based on the toggle value
+        // Update the dark mode feature toggle in Local Storage
+        localStorage.setItem('feature' + featureName, newToggleValue);
+
+        if (featureName === "DarkMode") {
+
             document.body.classList.toggle('dark-mode', newToggleValue === 'true');
 
-            // Log the updated status (you can remove this line in production)
-            console.log(`Feature ${featureName} is now ${newToggleValue === 'true' ? 'enabled' : 'disabled'}.`);
+        } else if (featureName === "PremiumService") {
+
+            let premiumStatusElement = document.getElementById('premiumStatus');
+
+            if (premiumStatusElement) {
+                premiumStatusElement.textContent = `${newToggleValue === 'true' ? '( ON )' : '( OFF )'}`;
+            }
         }
 
-        // Initialize feature toggles on page load
-        function initializeFeatureToggles() {
-            // List of feature toggle names
-            const featureToggleNames = ['DarkMode'];
+        // Log the updated status (you can remove this line in production)
+        console.log(`Feature ${featureName} is now ${newToggleValue === 'true' ? 'enabled' : 'disabled'}.`);
+    }
 
-            // Check Local Storage for each feature toggle and update the UI
-            featureToggleNames.forEach(featureName => {
-                const toggleElement = document.getElementById(featureName.toLowerCase() + 'Toggle');
-                if (toggleElement) {
-                    toggleElement.checked = localStorage.getItem('feature' + featureName) === 'true';
-                }
-            });
+    // Initialize feature toggles on page load
+    function initializeFeatureToggles() {
+        // List of feature toggle names
+        const featureToggleNames = ['DarkMode', 'PremiumService'];
 
-            // Apply dark mode styles based on the initial toggle values
-            document.body.classList.toggle('dark-mode', localStorage.getItem('featureDarkMode') === 'true');
-        }
+        // Check Local Storage for each feature toggle and update the UI
+        featureToggleNames.forEach(featureName => {
+            const toggleElement = document.getElementById(featureName.toLowerCase() + 'Toggle');
+            if (toggleElement) {
+                toggleElement.checked = localStorage.getItem('feature' + featureName) === 'true';
+            }
+        });
 
-        // Call the initialization function on page load
-        initializeFeatureToggles();
+        // Apply dark mode styles based on the initial toggle values
+        document.body.classList.toggle('dark-mode', localStorage.getItem('featureDarkMode') === 'true');
+    }
+
+    // Call the initialization function on page load
+    initializeFeatureToggles();
     </script>
 </body>
+
 </html>

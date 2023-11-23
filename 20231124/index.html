@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+            transition: background-color 0.3s ease;
+        }
+
+        header {
+            color: white;
+            text-align: center;
+            padding: 20px;
+            background-color: #333;
+        }
+
+        .container {
+            max-width: 70%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .feature-toggle {
+            margin-bottom: 10px;
+        }
+
+        footer {
+            padding: 20px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #333;
+            color: white;
+        }
+
+        header.dark-mode {
+            background-color: #555;
+        }
+
+        footer.dark-mode {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Feature Toggles</h1>
+    </header>
+
+    <div class="container">
+        <div class="feature-toggle">
+            <label>
+                <input type="checkbox" id="darkModeToggle" onchange="toggleFeature('DarkMode')" checked> Dark Mode
+            </label>
+        </div>
+
+        <!-- Add other feature toggles as needed -->
+
+    </div>
+
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+
+    <script>
+        // Function to toggle the dark mode feature in Local Storage
+        function toggleFeature(featureName) {
+            const currentToggleValue = localStorage.getItem('feature' + featureName);
+            const newToggleValue = currentToggleValue === 'true' ? 'false' : 'true';
+
+            // Update the dark mode feature toggle in Local Storage
+            localStorage.setItem('feature' + featureName, newToggleValue);
+
+            // Apply dark mode styles to the body based on the toggle value
+            document.body.classList.toggle('dark-mode', newToggleValue === 'true');
+
+            // Log the updated status (you can remove this line in production)
+            console.log(`Feature ${featureName} is now ${newToggleValue === 'true' ? 'enabled' : 'disabled'}.`);
+        }
+
+        // Initialize feature toggles on page load
+        function initializeFeatureToggles() {
+            // List of feature toggle names
+            const featureToggleNames = ['DarkMode'];
+
+            // Check Local Storage for each feature toggle and update the UI
+            featureToggleNames.forEach(featureName => {
+                const toggleElement = document.getElementById(featureName.toLowerCase() + 'Toggle');
+                if (toggleElement) {
+                    toggleElement.checked = localStorage.getItem('feature' + featureName) === 'true';
+                }
+            });
+
+            // Apply dark mode styles based on the initial toggle values
+            document.body.classList.toggle('dark-mode', localStorage.getItem('featureDarkMode') === 'true');
+        }
+
+        // Call the initialization function on page load
+        initializeFeatureToggles();
+    </script>
+</body>
+</html>

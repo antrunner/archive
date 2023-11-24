@@ -29,6 +29,17 @@
   - Example of toggling between "Dark Theme" and "Light Theme" in a mobile app.
   - Users can switch themes using a feature toggle.
   - Real-time impact on the user interface.
+- **More Examples:**
+  - let isFeatureDarkModeEnabled = localStorage.getItem('featureDarkMode') === 'true';
+  - let isFeatureNotificationCenterEnabled = localStorage.getItem('featureNotificationCenter') === 'true';
+  - let isFeatureSocialSharingEnabled = localStorage.getItem('featureSocialSharing') === 'true';
+  - let isFeatureGuestCheckoutEnabled = localStorage.getItem('featureGuestCheckout') === 'true';
+  - let isFeaturePremiumSubscriptionEnabled = localStorage.getItem('featurePremiumSubscription') === 'true';
+  - let isFeatureOfflineModeEnabled = localStorage.getItem('featureOfflineMode') === 'true';
+  - let isFeatureLiveChatSupportEnabled = localStorage.getItem('featureLiveChatSupport') === 'true';
+  - let isFeatureDiscountCodesEnabled = localStorage.getItem('featureDiscountCodes') === 'true';
+  - let isFeatureMultipleLanguagesEnabled = localStorage.getItem('featureMultipleLanguages') === 'true';
+  - let isFeatureWishlistEnabled = localStorage.getItem('featureWishlist') === 'true'; 
 
 ---
 

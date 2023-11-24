@@ -58,5 +58,6 @@
  - **References:**
    - https://featureflagsbook.com/
    - https://en.wikipedia.org/wiki/Feature_toggle
+   - https://docs.google.com/presentation/d/19e8-WZjZLdy7PT5CNREvKsPJm76bU0MQ2VwaD04FRS0/edit?usp=sharing
 
 ---
